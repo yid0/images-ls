@@ -26,8 +26,7 @@ ARG WORKDIR_APP=app
 
 WORKDIR /${WORKDIR_APP}
 
-RUN apk update && apk add --no-cache \
-    python3=${PYTHON_VERSION}
+RUN apk update && apk add --no-cache python3=${PYTHON_VERSION}
 
 COPY --from=0 --chown=1001:1001 /${WORKDIR_APP} /${WORKDIR_APP}
 
