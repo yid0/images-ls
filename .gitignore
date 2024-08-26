@@ -1,0 +1,5 @@
+nifi*/
+dockerfile
+*.txt
+*.zip
+*.tar*
