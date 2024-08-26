@@ -1,4 +1,4 @@
-##
+## base image
 FROM alpine:3.20
 
 ARG PYTHON_VERSION=3.12.3-r2
