@@ -1,4 +1,4 @@
-## base image
+## base
 FROM alpine:3.20
 
 ARG PYTHON_VERSION=3.12.3-r2
@@ -33,4 +33,4 @@ COPY --from=0 --chown=1001:1001 /${WORKDIR_APP} /${WORKDIR_APP}
 
 RUN source /app/venv/bin/activate
 
-SHELL ["/bin/sh", "-c"]
+CMD ["/bin/sh", "-c"]
