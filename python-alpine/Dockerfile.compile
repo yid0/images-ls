@@ -1,0 +1,83 @@
+
+ARG ALPINE_VERSION=3.20
+ARG WORKDIR_APP=app
+ARG VIRTUAL_ENV_NAME=venv
+ARG VIRTUAL_ENV=/${WORKDIR_APP}/${VIRTUAL_ENV_NAME}
+
+FROM alpine:${ALPINE_VERSION}
+
+ARG PYTHON_VERSION=3.11.0
+ARG WORKDIR_APP
+ARG VIRTUAL_ENV_NAME
+ARG VIRTUAL_ENV
+
+# ENV WORKDIR_APP=${WORKDIR_APP}
+# ENV VIRTUAL_ENV=${VIRTUAL_ENV}
+# ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+WORKDIR /${WORKDIR_APP}
+RUN apk add --no-cache \
+    gcc \
+    musl-dev \
+    libffi-dev \
+    openssl-dev \
+    bzip2-dev \
+    zlib-dev \
+    readline-dev \
+    sqlite-dev \
+    xz-dev \
+    make && \ 
+    wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz && \
+    tar xzf Python-${PYTHON_VERSION}.tgz && \
+    cd Python-${PYTHON_VERSION} && \
+    ./configure --enable-optimizations --prefix=/usr/local && \
+    make -j$(nproc) && \
+    make altinstall && \
+    cd .. && \
+    rm -rf Python-${PYTHON_VERSION} Python-${PYTHON_VERSION}.tgz && \
+   
+    # apk update && apk add --no-cache python3=${PYTHON_VERSION} && \
+    ln -sf /usr/bin/python3 /usr/bin/python && \
+    ln -sf /usr/bin/pip3 /usr/bin/pip && \
+    python -m ${VIRTUAL_ENV_NAME} ${VIRTUAL_ENV} && \
+    source ${VIRTUAL_ENV}/bin/activate && \
+    pip -V && which python3 && python3 -V && \
+    pip install --upgrade pip && \
+    rm -rf /**/.cache/pip && rm -rf /var/cache/apk/* && \ 
+    find ${VIRTUAL_ENV} -type d -name "tests" -exec rm -rf {} + && \
+    find ${VIRTUAL_ENV} -type d -name "__pycache__" -exec rm -rf {} + && \
+    rm -rf ${VIRTUAL_ENV}/lib/python*/site-packages/*-info
+
+# RUN apk update && apk add --no-cache python3=${PYTHON_VERSION} && \
+#     ln -sf /usr/bin/python3 /usr/bin/python && \
+#     ln -sf /usr/bin/pip3 /usr/bin/pip && \
+#     python -m ${VIRTUAL_ENV_NAME} ${VIRTUAL_ENV} && \
+#     source ${VIRTUAL_ENV}/bin/activate && \
+#     pip -V && which python3 && python3 -V && \
+#     pip install --upgrade pip && \
+#     rm -rf /**/.cache/pip && rm -rf /var/cache/apk/* && \ 
+#     find ${VIRTUAL_ENV} -type d -name "tests" -exec rm -rf {} + && \
+#     find ${VIRTUAL_ENV} -type d -name "__pycache__" -exec rm -rf {} + && \
+#     rm -rf ${VIRTUAL_ENV}/lib/python*/site-packages/*-info
+
+
+FROM alpine:${ALPINE_VERSION}
+ 
+ARG WORKDIR_APP
+ARG VIRTUAL_ENV
+
+ENV WORKDIR_APP=${WORKDIR_APP}
+ENV VIRTUAL_ENV=${VIRTUAL_ENV}
+
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+WORKDIR /${WORKDIR_APP}
+
+RUN ln -sf /usr/bin/python3 /usr/bin/python && \
+    ln -sf /usr/bin/pip3 /usr/bin/pip
+
+COPY --from=0 --chown=1001:1001 ${VIRTUAL_ENV} ${VIRTUAL_ENV}
+COPY --from=0 /usr/lib /usr/lib
+COPY --from=0 /usr/bin /usr/bin
+
+CMD [ "sh", "-c", "source $VIRTUAL_ENV/bin/activate && tail -f /dev/null" ]

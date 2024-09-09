@@ -1,5 +1,8 @@
 nifi*/
-dockerfile
+node*/
+*flow*/
+java*/
+**/dockerfile**
 *.txt
 *.zip
 *.tar*
