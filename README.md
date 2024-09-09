@@ -2,11 +2,11 @@
 
 This project aims to provide a list of lightweight Docker images for popular tools and software, with a focus on performance.
 
-## FastAPI (Alpine) - 114 MB
+## FastAPI (Alpine) - Less than 100MB
 
 This Docker image runs FastAPI with a lightweight Python image based on Alpine Linux.
-- **Compressed size**: Less than 40 MB
-- **Uncompressed size**: 114 MB
+- **Compressed size**: Less than 30MB
+- **Uncompressed size**: Less than 100MB
 
 ### Usage
 
@@ -22,9 +22,9 @@ To use this image in your projects (e.g., for build stages), you can use the fol
 
         COPY --chown=1001:1001 . /app
 
-        RUN python -m venv ./venv && source ./venv/bin/activate && pip install -r requirements.txt
+        pip install -r requirements.txt
 
-        ENTRYPOINT /app/venv/bin/fastapi run main.py --port ${PORT} --proxy-headers --workers ${WORKERS}
+        ENTRYPOINT ["/app/venv/bin/fastapi", "run", "main.py"] # For production mode use "dev" insteaf of "run"
 
 ###  Example Kubernetes Deployment:
 

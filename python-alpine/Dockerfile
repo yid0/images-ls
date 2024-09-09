@@ -17,8 +17,7 @@ RUN apk update --no-cache && apk add --no-cache python3 && \
     ln -sf /usr/bin/pip3 /usr/bin/pip && \
     python -m venv ${VIRTUAL_ENV} && \
     source ${VIRTUAL_ENV}/bin/activate && \
-    which python && \
-    pip install --upgrade pip && \
+    which python && pip install --upgrade pip && \
     find ${VIRTUAL_ENV} -type d -name "tests" -exec rm -rf {} + && \
     find ${VIRTUAL_ENV} -type d -name "test" -exec rm -rf {} + && \
     find ${VIRTUAL_ENV} -type d -name "__pycache__" -exec rm -rf {} + && \
