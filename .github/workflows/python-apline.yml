@@ -1,12 +1,12 @@
-name: Build and Push FastAPI-Alpine Docker Image
+name: Build and Push Python-Alpine Docker Image
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'fastapi-alpine'
-      - '.github/workflows/fastapi-alpine.yml'
+      - 'python-alpine'
+      - '.github/workflows/python-alpine.yml'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,6 +29,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./fastapi-alpine/Dockerfile
+          file: ./python-alpine/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/fastapi-apline:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/python-apline:latest

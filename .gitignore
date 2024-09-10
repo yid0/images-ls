@@ -1,6 +1,6 @@
 nifi*/
 node*/
-*flow*/
+airflow*/
 java*/
 **/dockerfile**
 *.txt
