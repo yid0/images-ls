@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'python-alpine'
+      - 'python-alpine/**'
       - '.github/workflows/python-alpine.yml'
 jobs:
   build:

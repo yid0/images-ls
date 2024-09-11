@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'fastapi-alpine'
+      - 'fastapi-alpine/**'
       - '.github/workflows/fastapi-alpine.yml'
 jobs:
   build:

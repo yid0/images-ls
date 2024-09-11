@@ -1,9 +1,8 @@
 ARG ALPINE_VERSION=3.20
-
 ARG WORKDIR_APP=app
-ARG VIRTUAL_ENV=/app/venv
+ARG VIRTUAL_ENV=/${WORKDIR_APP}/venv
 
-FROM yidoughi/python-alpine:${ALPINE_VERSION}
+FROM yidoughi/pythpine:${ALPINE_VERSION}
 
 ARG FASTAPI_VERSION=0.112.1
 
@@ -31,12 +30,13 @@ ARG VIRTUAL_ENV
 ENV WORKDIR_APP=${WORKDIR_APP}
 ENV VIRTUAL_ENV=${VIRTUAL_ENV}
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+ENV HOME=/${WORKDIR_APP}
 
 WORKDIR /${WORKDIR_APP}
 
-COPY --from=0 --chown=1001:1001 status.py ./status.py
-COPY --from=0 --chown=1001:1001 ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 COPY --from=0 /usr/lib /usr/lib
 COPY --from=0 /usr/bin /usr/bin
+COPY --from=0 --chown=1001:1001 status.py ./status.py
+COPY --from=0 --chown=1001:1001 ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 
 CMD [ "sh", "-c", "tail -f /dev/null" ]
