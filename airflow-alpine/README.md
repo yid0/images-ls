@@ -4,9 +4,9 @@ This Docker image contains Apache Airflow installed on Alpine Linux.
 
 ### Quickstart
 
-        docker run --name airflowpine -d yidoughi/airflowpine:latest
+        docker run --name airflowpine -d -p 8080:8080 yidoughi/airflowpine:latest
         
-        docker exec -it airflowpine sh -c "airflowpine -h" 
+        docker exec -it airflowpine sh -c "airflow -h && airflow webserver" 
 
 ## Build 
 
@@ -29,3 +29,6 @@ This Docker image contains Apache Airflow installed on Alpine Linux.
                 Alpine: 3.20
                 Python 3.12.5 
                 Airflow: 2.10.1
+
+## TODO 
+- Remove sensitive data for prodcution mode                
