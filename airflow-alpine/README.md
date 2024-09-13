@@ -1,22 +1,31 @@
-# Pythpine
+# Airflowpine
 
-This Docker image contains Python and pip installed on Alpine Linux.
+This Docker image contains Apache Airflow installed on Alpine Linux.
 
 ### Quickstart
 
-        docker run --name pythpine -d yidoughi/pythpine:latest
+        docker run --name airflowpine -d yidoughi/airflowpine:latest
         
-        docker exec -it pyhpine sh -c "python -V" 
+        docker exec -it airflowpine sh -c "airflowpine -h" 
 
 ## Build 
 
-        docker buildx build --build-arg -t yidoughi/pythpine:latest .
+        docker buildx build --build-arg ARG_1 --build-arg ARG_2 -t yidoughi/airflowpine:latest .
 
-## Supported Args :
+## Supported Args
 
 | Arg name  | Description          | Default value |
 | :--------------- |:---------------:| -----------------:|
 | ALPINE_VERSION  |   Version of alpine linux wanted to use |  3.20 |
-| FASTAPI_VERSION | FastAPI version wanted to install | 0.112.1 
-| WORKDIR_APP     | The application folder             |   app |
+| AIRFLOW_HOME | Path of Airflow home folder | /usr/local/airflow |
+| AIRFLOW_VERSION     | Airflow version to install |    2.10.1 |
 | VIRTUAL_ENV | path of the python virtual env (based on WORKDIR_APP)| NA     |
+| USERNAME | Admin username  to access adminstration panel | admin |
+| PASSWORD | Password for the Admin user | admin |
+| EMAIL |Email of the Admin user | admin@admin .com |
+
+## Supprted version with ```latest``` tag
+
+                Alpine: 3.20
+                Python 3.12.5 
+                Airflow: 2.10.1

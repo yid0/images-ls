@@ -12,7 +12,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 WORKDIR /${WORKDIR_APP}
 
-COPY --chown=1001:1001 status.py ./status.py
+COPY status.py ./status.py
 
 RUN apk update --no-cache && \
     pip install "fastapi[standard]"==$FASTAPI_VERSION && \ 
