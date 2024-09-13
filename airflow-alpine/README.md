@@ -1,16 +1,16 @@
-# pythopine
+# Pythpine
 
 This Docker image contains Python and pip installed on Alpine Linux.
 
 ### Quickstart
 
-        docker run --name pythopine -d yidoughi/pythopine:latest
+        docker run --name pythpine -d yidoughi/pythpine:latest
         
         docker exec -it pyhpine sh -c "python -V" 
 
 ## Build 
 
-        docker buildx build --build-arg -t yidoughi/pythopine:latest .
+        docker buildx build --build-arg -t yidoughi/pythpine:latest .
 
 ## Supported Args :
 

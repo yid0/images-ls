@@ -1,6 +1,6 @@
 # Fastpine 
 
-Run a FastAPI application in few seconds with a lightweight Python [pythpine](../python-alpine/README.md) image based on Alpine Linux.
+Run a FastAPI application in few seconds with a lightweight Python [pythopine](../python-alpine/README.md) image based on Alpine Linux.
 
 ### Quickstart
 

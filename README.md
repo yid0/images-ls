@@ -2,7 +2,7 @@
 
 This project aims to provide a list of lightweight Docker images for popular tools and software, with a focus on performance.
 
-## [Pythpine](python-alpine/README.md) - Less than 55 MB
+## [Pythopine](python-alpine/README.md) - Less than 55 MB
 
 This Docker image contains Python and pip installed on Alpine Linux.
 
@@ -11,7 +11,7 @@ This Docker image contains Python and pip installed on Alpine Linux.
 
 ## [Fastpine](fastapi-alpine/README.md) - Less than 100 MB
 
-This Docker image runs FastAPI with [Pythpine](python-alpine/README.md) a lightweight Python image based on Alpine Linux.
+This Docker image runs FastAPI with [pythopine](python-alpine/README.md) a lightweight Python image based on Alpine Linux.
 
 - **Compressed size**: Less than 30 MB
 - **Uncompressed size**: Less than 100 MB

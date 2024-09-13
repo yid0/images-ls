@@ -1,4 +1,4 @@
-name: Build and Push Python-Alpine Docker Image
+name: pythopine
 
 on:
   push:
@@ -31,4 +31,4 @@ jobs:
           context: .
           file: ./python-alpine/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/python-apline:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/pythopine:latest

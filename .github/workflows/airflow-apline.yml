@@ -1,12 +1,12 @@
-name: fastpine
+name: airflowpine
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'fastapi-alpine/**'
-      - '.github/workflows/fastapi-alpine.yml'
+      - 'airflow-alpine/**'
+      - '.github/workflows/airflow-alpine.yml'
   workflow_run:
     workflows: ["pythopine"]
     types:
@@ -34,6 +34,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./fastapi-alpine/Dockerfile
+          file: ./airflow-alpine/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/fastpine:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/airflowpine:latest

@@ -2,7 +2,7 @@ ARG ALPINE_VERSION=3.20
 ARG WORKDIR_APP=app
 ARG VIRTUAL_ENV=/${WORKDIR_APP}/venv
 
-FROM yidoughi/pythpine:${ALPINE_VERSION}
+FROM yidoughi/pythopine:${ALPINE_VERSION}
 
 ARG FASTAPI_VERSION=0.112.1
 
@@ -12,7 +12,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 WORKDIR /${WORKDIR_APP}
 
-COPY --chown=1001:1001 status.py .
+COPY --chown=1001:1001 status.py ./status.py
 
 RUN apk update --no-cache && \
     pip install "fastapi[standard]"==$FASTAPI_VERSION && \ 

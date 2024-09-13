@@ -24,4 +24,17 @@ RUN apk update --no-cache && apk add --no-cache python3 && \
     rm -rf ${VIRTUAL_ENV}/lib/python*/site-packages/*-info &&\    
     rm -rf /**/.cache/pip && rm -rf /var/cache/apk/*
 
+
+FROM alpine:${ALPINE_VERSION}
+
+ARG WORKDIR_APP
+ARG VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+WORKDIR /${WORKDIR_APP}
+
+COPY --from=0 /usr/bin /usr/bin
+COPY --from=0 /usr/lib /usr/lib
+COPY --from=0 --chown=1001:1001 ${VIRTUAL_ENV} ${VIRTUAL_ENV}
+
 CMD [ "sh", "-c", "tail -f /dev/null" ]
