@@ -1,6 +1,6 @@
 nifi*/
-node*/
-java*/
+opensearch*/
+
 **/dockerfile**
 *.txt
 *.zip

@@ -1,0 +1,54 @@
+{
+    "id": "production-work-realm",
+    "realm": "my-production-realm",
+    "enabled": true,
+    "sslRequired": "all",
+    "users": [
+      {
+        "username": "admin",
+        "enabled": true,
+        "emailVerified": true,
+        "credentials": [
+          {
+            "type": "password",
+            "value": "secureAdminPassword",
+            "temporary": false
+          }
+        ],
+        "realmRoles": ["admin"]
+      }
+    ],
+    "roles": {
+      "realm": [
+        {
+          "name": "admin",
+          "description": "Realm Admin"
+        },
+        {
+          "name": "user",
+          "description": "Default Role"
+        }
+      ]
+    },
+    "clients": [
+      {
+        "clientId": "my-app-client",
+        "enabled": true,
+        "redirectUris": ["https://my-production-app.com/*"],
+        "publicClient": false,
+        "secret": "secureClientSecret",
+        "standardFlowEnabled": true,
+        "implicitFlowEnabled": false,
+        "directAccessGrantsEnabled": true,
+        "serviceAccountsEnabled": true
+      }
+    ],
+    "passwordPolicy": "length(12) and digits and lowerCase and upperCase and specialChars",
+    "browserSecurityHeaders": {
+      "contentSecurityPolicy": "frame-ancestors 'self';",
+      "xContentTypeOptions": "nosniff",
+      "xFrameOptions": "DENY",
+      "xXSSProtection": "1; mode=block"
+    }
+  }
+  

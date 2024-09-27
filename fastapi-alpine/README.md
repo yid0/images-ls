@@ -14,10 +14,9 @@ with workers flag :
 
   ### Check status : 
   
-                curl http://localhost:8000/status 
+                curl http://localhost:8000/status
 
 You might to get somthing like this :
-
 
                         *   Trying 127.0.0.1:8000...
                 * TCP_NODELAY set
