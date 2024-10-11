@@ -77,4 +77,4 @@ RUN airflow --help && airflow db init && airflow users create \
 
 EXPOSE ${PORT}
 
-CMD [ "sh", "-c", "tail -f /dev/null" ]
+CMD tail -f /dev/null

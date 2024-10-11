@@ -69,9 +69,10 @@ psql -v ON_ERROR_STOP=1 --username "postgres" --command "ALTER USER postgres WIT
 # Exemple de configuration pour plusieurs applications
 # Pour chaque application, on peut appeler les fonctions avec des paramètres spécifiques
 for app in "APP1" "APP2"; do
-  APP_USER_VAR="${app}_USER"
-  APP_PASSWORD_VAR="${app}_PASSWORD"
-  APP_DB_VAR="${app}_DB"
+  APP_USER_VAR=$app"_USER"
+  APP_PASSWORD_VAR=$app"_PASSWORD"
+  APP_DB_VAR=$app"_DB"
+
 
   # Extraction des variables spécifiques à chaque application
   APP_USER=${!APP_USER_VAR}
@@ -79,9 +80,9 @@ for app in "APP1" "APP2"; do
   APP_DB=${!APP_DB_VAR}
 
   # Création/mise à jour de l'utilisateur et de la base de données
-  create_or_update_user "$APP_USER" "$APP_PASSWORD"
-  create_database_if_not_exists "$APP_DB" "$APP_USER"
-  grant_privileges "$APP_DB" "$APP_USER"
+  create_or_update_user $APP_USER $APP_PASSWORD
+  create_database_if_not_exists $APP_DB $APP_USER
+  grant_privileges $APP_DB $APP_USER
 done
 
 # Configuration des fichiers PostgreSQL

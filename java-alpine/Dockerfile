@@ -28,4 +28,4 @@ ENV JAVA_HOME=/usr/lib/jvm/java-${JAVA_VERSION}-openjdk
 COPY --from=0 /usr/bin /usr/bin
 COPY --from=0 /usr/lib/jvm /usr/lib/jvm
     
-CMD ["sh", "-c", "java --version && tail -f /dev/null"]
+CMD tail -f /dev/null

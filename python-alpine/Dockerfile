@@ -1,5 +1,3 @@
-
-
 ARG ALPINE_VERSION=3.20
 ARG WORKDIR_APP=app
 ARG VIRTUAL_ENV=/${WORKDIR_APP}/venv
@@ -37,4 +35,4 @@ COPY --from=0 /usr/bin /usr/bin
 COPY --from=0 /usr/lib /usr/lib
 COPY --from=0 --chown=1001:1001 ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 
-CMD [ "sh", "-c", "tail -f /dev/null" ]
+CMD tail -f /dev/null

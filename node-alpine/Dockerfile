@@ -34,4 +34,4 @@ COPY --from=0 /usr/bin /usr/bin
 COPY --from=0 /usr/lib /usr/lib
 COPY --from=0 /usr/local /usr/local
 
-CMD ["sh", "-c", "node -v && tail -f /dev/null"]
+CMD tail -f /dev/null

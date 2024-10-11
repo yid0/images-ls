@@ -14,8 +14,6 @@ RUN mkdir -p ${POSTGRES_DIR} && apk add --no-cache linux-headers build-base curl
 
 WORKDIR ${POSTGRES_DIR}
 
-# COPY postgres*.tar.gz /tmp/postgresql.tar.gz
-
 RUN wget ${POSTGRES_DIST} -O /tmp/postgresql.tar.gz  && tar -xzf /tmp/postgresql.tar.gz -C ${POSTGRES_DIR} --strip-components=1 && ls -la . && \
     ./configure --prefix=${POSTGRES_DIR} && make && make install && \
     rm -rf /var/cache/apk/* /tmp/* ${POSTGRES_DIR}/doc
@@ -54,4 +52,4 @@ USER 1001
 
 RUN initdb -D ${PGDATA}
 
-CMD [ "sh", "-c", "tail -f /dev/null" ]
+CMD tail -f /dev/null
