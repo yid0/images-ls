@@ -34,9 +34,9 @@ jobs:
           file: ./java-alpine/Dockerfile
           push: true
           build-args:
-            JAVA_VERSION: ${{ env.JAVA_VERSION }}
-            ALPINE_VERSION: ${{ env.ALPINE_VERSION }}
+            JAVA_VERSION: $JAVA_VERSION
+            ALPINE_VERSION: $ALPINE_VERSION
 
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/javapine-${{ env.JAVA_VERSION }}:${{ env.ALPINE_VERSION }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/javapine-$JAVA_VERSION:$ALPINE_VERSION
             ${{ secrets.DOCKERHUB_USERNAME }}/javapine:latest   

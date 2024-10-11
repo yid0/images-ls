@@ -35,4 +35,4 @@ COPY --from=0 /usr/bin /usr/bin
 COPY --from=0 /usr/lib /usr/lib
 COPY --from=0 --chown=1001:1001 ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 
-CMD tail -f /dev/null
+CMD ["tail",  "-f" , "/dev/null"]

@@ -114,6 +114,6 @@ EXPOSE ${KC_HTTPS_PORT}
 
 USER 1001
 
-CMD tail -f /dev/null
+CMD ["tail", "-f" , "/dev/null"]
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 CMD curl -f https://localhost:$KC_HTTPS_PORT || exit 1

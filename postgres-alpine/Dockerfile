@@ -52,4 +52,4 @@ USER 1001
 
 RUN initdb -D ${PGDATA}
 
-CMD tail -f /dev/null
+CMD ["tail",  "-f" , "/dev/null"]
