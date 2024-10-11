@@ -11,7 +11,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     environment: dev
-
+    env:
+      JAVA_VERSION: 17
+      ALPINE_VERSION: 3.20
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -37,7 +39,4 @@ jobs:
 
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/javapine-${{ env.JAVA_VERSION }}:${{ env.ALPINE_VERSION }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/javapine:latest
-    env:
-      JAVA_VERSION: 17
-      ALPINE_VERSION: 3.20
+            ${{ secrets.DOCKERHUB_USERNAME }}/javapine:latest   

@@ -84,10 +84,10 @@ push-postgrepine:
 build-opensalpine:
 		docker buildx build  -t yidoughi/opensalpine:latest ./opensearch-alpine --progress=plain 
 		
-.PHONY:	build-airflopine
-build-airflopine:
-		docker buildx build  --build-arg AIRFLOW_VERSION=${AIRFLOW_VERSION} -t yidoughi/airflopine:latest ./airflow-alpine --progress=plain
-		docker tag yidoughi/airflopine:${AIRFLOW_VERSION} yidoughi/airflopine:latest
+.PHONY:	build-airflowpine
+build-airflowpine:
+		docker buildx build  --build-arg AIRFLOW_VERSION=${AIRFLOW_VERSION} -t yidoughi/airflowpine:latest ./airflow-alpine --progress=plain
+		docker tag yidoughi/airflowpine:${AIRFLOW_VERSION} yidoughi/airflowpine:latest
 		docker buildx build  -t yidoughi/postgrepine:latest ./postgres-alpine --progress=plain
 
 .PHONY:	run-keyclopine
@@ -95,10 +95,10 @@ run-keyclopine:
 		docker rm -f keyclopine && \
 		docker run --rm --name keyclopine -e "KC_HTTPS_PORT=8843" -e "KC_DB_URL_HOST=172.19.172.190" -d -p 8843:8843 yidoughi/keyclopine-${KEYCLOAK_VERSION}:${JAVA_VERSION} 
 
-.PHONY:	run-airflopine
-run-airflopine:
-		docker rm -f airflopine && \
-		docker run --rm --name airflopine -d -p 8443:8443 yidoughi/airflopine:latest
+.PHONY:	run-airflowpine
+run-airflowpine:
+		docker rm -f airflowpine && \
+		docker run --rm --name airflowpine -d -p 8080:8080 yidoughi/airflowpine:latest
 
 .PHONY:	run-opensalpine
 run-opensalpine:
@@ -125,6 +125,6 @@ exec-keyclopine:
 exec-postgrepine:
 	docker exec -it postgrepine sh
 
-.PHONY:	exec-airflopine
-exec-airflopine:
-	docker exec -it airflopine sh	
+.PHONY:	exec-airflowpine
+exec-airflowpine:
+	docker exec -it airflowpine sh	
