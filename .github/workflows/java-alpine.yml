@@ -40,5 +40,5 @@ jobs:
           push: true
           build-args: [ 'JAVA_VERSION=${{ matrix.java_version }}', 'ALPINE_VERSION=${{ env.ALPINE_VERSION }}' ]
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/javapine-${{ JAVA_VERSION }}:${{ env.ALPINE_VERSION }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/javapine-${{ JAVA_VERSION }}:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/javapine-${{ github.event.inputs.JAVA_VERSION }}:${{ env.ALPINE_VERSION }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/javapine-${{ github.event.inputs.JAVA_VERSION }}:latest
