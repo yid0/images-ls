@@ -42,5 +42,5 @@ jobs:
               JAVA_VERSION: ${{ matrix.java_version }}
               ALPINE_VERSION: ${{ env.ALPINE_VERSION }}
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/javapine-${{ matrix.java_version }}:${{ env.ALPINE_VERSION }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/javapine-${{ matrix.java_version }}:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/javapine-${{ env.JAVA_VERSION }}:${{ env.ALPINE_VERSION }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/javapine-${{ env.JAVA_VERSION }}:latest
