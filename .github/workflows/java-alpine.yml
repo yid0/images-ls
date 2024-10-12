@@ -8,7 +8,6 @@ on:
       - 'java-alpine/**'
       - '.github/workflows/java-alpine.yml'
 env:
-  JAVA_VERSION: "11"
   ALPINE_VERSION: "3.20"
 
 jobs:
@@ -43,5 +42,5 @@ jobs:
               JAVA_VERSION: ${{ matrix.java_version }}
               ALPINE_VERSION: ${{ env.ALPINE_VERSION }}
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/javapine-${{ github.event.inputs.JAVA_VERSION  }}:${{ env.ALPINE_VERSION }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/javapine-${{ github.event.inputs.JAVA_VERSION  }}:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/javapine-$JAVA_VERSION:${{ env.ALPINE_VERSION }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/javapine-$JAVA_VERSION:latest
