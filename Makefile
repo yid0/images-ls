@@ -27,7 +27,7 @@ run-fastpine:
 
 .PHONY:	build-javapine
 build-javapine:
-		docker buildx build --build-arg "ALPINE_VERSION=${ALPINE_VERSION}" --build-arg "JAVA_VERSION=${JAVA_VERSION}" -t yidoughi/javapine:${JAVA_VERSION}-${ALPINE_VERSION} -t yidoughi/javapine:latest ./java-alpine --progress=plain
+		docker buildx build --build-arg "ALPINE_VERSION=${ALPINE_VERSION}" --build-arg "JAVA_VERSION=${JAVA_VERSION}" -t yidoughi/javapine-${JAVA_VERSION}:${ALPINE_VERSION} -t yidoughi/javapine-${JAVA_VERSION}:latest ./java-alpine --progress=plain
 
 .PHONY:	run-javapine
 run-javapine:
