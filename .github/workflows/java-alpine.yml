@@ -38,7 +38,7 @@ jobs:
           context: .
           file: ./java-alpine/Dockerfile
           push: true
-          build-args:
+          build-args: |
               JAVA_VERSION: ${{ matrix.java_version }}
               ALPINE_VERSION: ${{ env.ALPINE_VERSION }}
           tags: |
