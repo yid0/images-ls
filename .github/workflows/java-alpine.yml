@@ -7,13 +7,15 @@ on:
     paths:
       - 'java-alpine/**'
       - '.github/workflows/java-alpine.yml'
+env:
+  JAVA_VERSION: "17"
+  ALPINE_VERSION: "3.20"
+
 jobs:
   build:
     runs-on: ubuntu-latest
     environment: dev
-    env:
-      JAVA_VERSION: 17
-      ALPINE_VERSION: 3.20
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -34,9 +36,9 @@ jobs:
           file: ./java-alpine/Dockerfile
           push: true
           build-args:
-            JAVA_VERSION: $JAVA_VERSION
-            ALPINE_VERSION: $ALPINE_VERSION
+            JAVA_VERSION: ${{ env.JAVA_VERSION }}
+            ALPINE_VERSION: ${{env.ALPINE_VERSION }}
 
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/javapine-$JAVA_VERSION:$ALPINE_VERSION
+            ${{ secrets.DOCKERHUB_USERNAME }}/javapine-${{ env.JAVA_VERSION }}:${{ env.ALPINE_VERSION }}
             ${{ secrets.DOCKERHUB_USERNAME }}/javapine:latest   
