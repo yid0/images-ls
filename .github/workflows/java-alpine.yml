@@ -8,6 +8,7 @@ on:
       - 'java-alpine/**'
       - '.github/workflows/java-alpine.yml'
 env:
+  JAVA_VERSION: "11"
   ALPINE_VERSION: "3.20"
 
 jobs:
@@ -17,7 +18,7 @@ jobs:
 
     strategy:
       matrix:
-        java: [11, 17, 21]  
+        java_version: [11, 17, 21]  
 
     steps:
       - name: Checkout repository
