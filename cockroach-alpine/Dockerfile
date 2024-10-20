@@ -20,7 +20,7 @@ RUN mkdir -p ${COCKROACH_DIR} && mkdir -p ${COCKROACH_LIB_DIR} && \
     wget ${COCKROACH_DIST} -O /tmp/cockroachdb.tar.gz && tar -xzf /tmp/cockroachdb.tar.gz --strip-components=1 -C ${COCKROACH_DIR} && \ 
     ln -sf ${COCKROACH_DIR}/lib/libgeos_c.so ${COCKROACH_LIB_DIR}/libgeos_c.so && \
     ln -sf ${COCKROACH_DIR}/lib/libgeos.so ${COCKROACH_LIB_DIR}/libgeos.so && \
-    rm -rf /var/cache/apk/* /tmp/*.gz ${COCKROACH_DIR}/*.txt && du -sh ${COCKROACH_LIB_DIR}
+    rm -rf /var/cache/apk/* /tmp/* ${COCKROACH_DIR}/*.txt
     
 FROM yidoughi/glibcpine:${ALPINE_VERSION}
 
@@ -55,8 +55,4 @@ WORKDIR ${HOME}
 
 EXPOSE ${PORT} ${HTTP_PORT}
 
-USER 1001
-
 CMD ["tail", "-f" , "/dev/null"]
-# Commande pour démarrer CockroachDB en cluster avec SSL
-# CMD ["cockroach", "start", "--certs-dir=/var/lib/cockroachdb/certs", "--listen-addr=0.0.0.0", "--http-addr=0.0.0.0", "--join=cockroachdb-0.cockroachdb.default.svc.cluster.local:26257"]
