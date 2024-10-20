@@ -43,5 +43,5 @@ jobs:
             "ALPINE_VERSION=${{ env.ALPINE_VERSION }}"
             "COCKROACH_VERSION=${{ env.COCKROACH_VERSION }}"
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/cockroachpine:${{ env.COCKROACH_VERSION }}-alpine${{ env.ALPINE_VERSION }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/cockroachpine:${{ env.COCKROACH_VERSION }}alpine${{ env.ALPINE_VERSION }}
             ${{ secrets.DOCKERHUB_USERNAME }}/cockroachpine:latest
