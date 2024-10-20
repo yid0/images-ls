@@ -39,7 +39,7 @@ jobs:
             "ALPINE_VERSION=${{ env.ALPINE_VERSION }}"
             "GLIBC_VERSION=${{ env.GLIBC_VERSION }}"
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/glibcpine:{{ env.GLIBC_VERSION }}-alpine${{ env.ALPINE_VERSION }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/glibcpine:${{ env.GLIBC_VERSION }}-alpine${{ env.ALPINE_VERSION }}
             ${{ secrets.DOCKERHUB_USERNAME }}/glibcpine:alpine${{ env.ALPINE_VERSION }}
             ${{ secrets.DOCKERHUB_USERNAME }}/glibcpine:${{ env.ALPINE_VERSION }}
             ${{ secrets.DOCKERHUB_USERNAME }}/glibcpine:latest 

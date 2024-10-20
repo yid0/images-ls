@@ -36,7 +36,7 @@ jobs:
           context: ./cockroach-alpine
           file: ./cockroach-alpine/Dockerfile
           push: true
-            build-args: | 
+          build-args: | 
             "COCKROACH_VERSION=${{ env.COCKROACH_VERSION }}"
             "ALPINE_VERSION=${{ env.ALPINE_VERSION }}"
           tags: |
