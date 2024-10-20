@@ -1,15 +1,16 @@
-name: glibcpine
+name: fastpine
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'glibc-alpine/**'
-      - '.github/workflows/glibc-alpine.yml'
-env:
-  ALPINE_VERSION: "3.20"
-  GLIBC_VERSION: "2.35-r1"
+      - 'cockroach-alpine/**'
+      - '.github/workflows/cockroach-alpine.yml'
+  workflow_run:
+    workflows: ["glibcpine"]
+    types:
+      - completed
 
 jobs:
   build:
@@ -32,14 +33,12 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: ./glibc-alpine
-          file: ./glibc-alpine/Dockerfile
+          context: ./cockroach-alpine
+          file: ./cockroach-alpine/Dockerfile
           push: true
-          build-args: | 
+            build-args: | 
+            "COCKROACH_VERSION=${{ env.COCKROACH_VERSION }}"
             "ALPINE_VERSION=${{ env.ALPINE_VERSION }}"
-            "GLIBC_VERSION=${{ env.GLIBC_VERSION }}"
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/glibcpine:{{ env.GLIBC_VERSION }}-alpine${{ env.ALPINE_VERSION }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/glibcpine:alpine${{ env.ALPINE_VERSION }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/glibcpine:${{ env.ALPINE_VERSION }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/glibcpine:latest 
+            ${{ secrets.DOCKERHUB_USERNAME }}/cockroachpine:${{ env.COCKROACH_VERSION }}-alpine${{ env.ALPINE_VERSION }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/cockroachpine:latest
