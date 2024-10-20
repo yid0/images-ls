@@ -1,4 +1,4 @@
-name: fastpine
+name: cockroachpine
 
 on:
   push:
@@ -11,6 +11,9 @@ on:
     workflows: ["glibcpine"]
     types:
       - completed
+env:
+  ALPINE_VERSION: "3.20"
+  COCKROACH_VERSION: "24.2.3"
 
 jobs:
   build:
@@ -37,8 +40,8 @@ jobs:
           file: ./cockroach-alpine/Dockerfile
           push: true
           build-args: | 
-            "COCKROACH_VERSION=${{ env.COCKROACH_VERSION }}"
             "ALPINE_VERSION=${{ env.ALPINE_VERSION }}"
+            "COCKROACH_VERSION=${{ env.COCKROACH_VERSION }}"
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/cockroachpine:${{ env.COCKROACH_VERSION }}-alpine${{ env.ALPINE_VERSION }}
             ${{ secrets.DOCKERHUB_USERNAME }}/cockroachpine:latest
