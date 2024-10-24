@@ -11,4 +11,4 @@ if [ "$COCKROACH_ENV" = "production" ]; then
     --certs-dir=/var/lib/cockroachdb/certs
 fi
 
-cockroach $START --http-addr="$COCKROACH_HOST":"$COCKROACH_HTTP_PORT" --listen-addr="$COCKROACH_HOSTNAME":"$COCKROACH_PORT" $JOIN_CLUSTER
+cockroach $START --http-addr="$COCKROACH_HOST":"$COCKROACH_HTTP_PORT" --listen-addr="$COCKROACH_HOST":"$COCKROACH_PORT" $JOIN_CLUSTER

@@ -5,11 +5,11 @@ ARG COCKROACH_LIB_DIR=/usr/local/lib/cockroach
 
 FROM alpine:${ALPINE_VERSION} AS builder
 
-ARG ARCHITECTURE=linux-amd64
+ARG BUILD_ARCH=linux-amd64
 
 ARG COCKROACHDB_VERSION
 
-ARG COCKROACH_DIST=https://binaries.cockroachdb.com/cockroach-v${COCKROACHDB_VERSION}.${ARCHITECTURE}.tgz
+ARG COCKROACH_DIST=https://binaries.cockroachdb.com/cockroach-v${COCKROACHDB_VERSION}.${BUILD_ARCH}.tgz
 
 ARG COCKROACH_DIR
 ENV COCKROACH_DIR=${COCKROACH_DIR}
@@ -33,8 +33,11 @@ ENV COCKROACH_LIB_DIR=${COCKROACH_LIB_DIR}
 
 ENV HOME=${COCKROACH_DIR}
 
-ENV COCKROACH_PORT=26257
-ENV COCKROACH_HTTP_PORT=8099
+ARG COCKROACH_PORT=26257
+ENV COCKROACH_PORT=${COCKROACH_PORT}
+
+ARG COCKROACH_HTTP_PORT=8099
+ENV COCKROACH_HTTP_PORT=${COCKROACH_HTTP_PORT}
 
 ENV COCKROACH_HTTP_HOST=dev
 ENV COCKROACH_HOSTNAME=dev
@@ -43,16 +46,17 @@ ENV COCKROACH_ENV=dev
 ENV PATH="$COCKROACH_DIR:/usr/glibc-compat:$PATH"
 
 COPY --from=builder --chown=1001:1001 ${COCKROACH_DIR} ${COCKROACH_DIR}
-COPY --from=builder --chown=1001:1001 ${COCKROACH_LIB_DIR} ${COCKROACH_LIB_DIR}
 COPY --chown=1001:1001 --chmod=755 start.sh /${COCKROACH_DIR}/start.sh
 
 RUN adduser -D -h /var/lib/cockroach -u 1001 cockroach && \
     mkdir -p /var/lib/cockroach/certs && \
-    chown -R 1001:1001 /var/lib/cockroach ${COCKROACH_DIR} && \
+    chown -R 1001:1001 /var/lib/cockroach && \
     rm -rf /var/cache/apk/* /tmp/*
 
 WORKDIR ${HOME}
 
 EXPOSE ${PORT} ${HTTP_PORT}
 
-CMD ["tail", "-f" , "/dev/null"]
+USER 1001
+
+CMD ["start.sh"]
