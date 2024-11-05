@@ -37,7 +37,7 @@ jobs:
           push: true
           build-args: | 
             "ALPINE_VERSION=${{ env.ALPINE_VERSION }}"
-            "POSTGRES_VERSION=${{ env.POSTGRES_VERSION }}
+            "POSTGRES_VERSION=${{ env.POSTGRES_VERSION }}"
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/postgrepine:${{ env.POSTGRES_VERSION }}alpine-${{ env.ALPINE_VERSION }}
             ${{ secrets.DOCKERHUB_USERNAME }}/postgrepine:latest 
