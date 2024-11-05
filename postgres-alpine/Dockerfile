@@ -12,8 +12,17 @@ ARG POSTGRES_DIR
 ENV POSTGRES_DIR=${POSTGRES_DIR}
 
 RUN mkdir -p ${POSTGRES_DIR} && \ 
-    apk add --no-cache linux-headers build-base curl openssl-dev \
-    libressl libedit-dev perl bison zlib-dev icu-dev icu-libs  
+    apk update --no-cache && apk add --no-cache linux-headers \
+    build-base \
+    curl \
+    openssl-dev \
+    libressl \ 
+    libedit-dev \ 
+    perl \ 
+    bison zlib-dev \ 
+    icu-libs \
+    icu-dev 
+
 
 WORKDIR ${POSTGRES_DIR}
 
