@@ -23,7 +23,6 @@ RUN mkdir -p ${POSTGRES_DIR} && \
     icu-libs \
     icu-dev 
 
-
 WORKDIR ${POSTGRES_DIR}
 
 RUN wget ${POSTGRES_DIST} -O /tmp/postgresql.tar.gz  && tar -xzf /tmp/postgresql.tar.gz -C ${POSTGRES_DIR} --strip-components=1 && \

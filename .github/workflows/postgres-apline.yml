@@ -9,7 +9,7 @@ on:
       - '.github/workflows/postgres-alpine.yml'
 env:
   ALPINE_VERSION: "3.20"
-  POSTGRES_VERSION: "16"
+  POSTGRES_VERSION: "16.0"
 
 jobs:
   build:
