@@ -11,7 +11,8 @@ ARG POSTGRES_DIST=https://ftp.postgresql.org/pub/source/v${POSTGRES_VERSION}/pos
 ARG POSTGRES_DIR
 ENV POSTGRES_DIR=${POSTGRES_DIR}
 
-RUN mkdir -p ${POSTGRES_DIR} && apk add --no-cache linux-headers build-base curl openssl-dev \
+RUN mkdir -p ${POSTGRES_DIR} && \ 
+    apk add --no-cache linux-headers build-base curl openssl-dev \
     libressl libedit-dev perl bison zlib-dev icu-dev icu-libsstart  
 
 WORKDIR ${POSTGRES_DIR}
